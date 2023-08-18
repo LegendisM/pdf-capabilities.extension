@@ -4,11 +4,13 @@ export class BootstrapService {
     #root: HTMLElement | undefined;
     static events = {
         reset: new CustomEvent("bootstrap:reset"),
+        exit: new CustomEvent("bootstrap:exit")
     };
 
     constructor() {
         this.init();
         this.bindReset();
+        this.bindExit();
     }
 
     init() {
@@ -17,15 +19,25 @@ export class BootstrapService {
     }
 
     reset() {
+        this.exit();
+        this.init();
+    }
+
+    exit() {
         if (this.#root) {
             document.body.removeChild(this.#root);
         }
-        this.init();
     }
 
     bindReset() {
         document.addEventListener("bootstrap:reset", () => {
             this.reset();
+        });
+    }
+
+    bindExit() {
+        document.addEventListener("bootstrap:exit", () => {
+            this.exit();
         });
     }
 }

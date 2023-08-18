@@ -1,0 +1,1 @@
+export const FILE_ABILITY_WHITELIST_MIMES = ["audio/"];
