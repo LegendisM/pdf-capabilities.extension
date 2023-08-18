@@ -1,10 +1,10 @@
+import { ICON_EXIT_BASE64, ICON_MOVE_BASE64 } from "../constant/icon.constant";
 import draggable from "../helpers/draggable.helper";
+import BootstrapService from "../services/bootstrap.service";
 import FileAbility from "./file-ability.component";
 
 const abilities: { label: string, ability(): HTMLElement }[] = [
     { label: "Files", ability: FileAbility },
-    { label: "Files #2", ability: FileAbility },
-    { label: "Files #3", ability: FileAbility },
 ];
 
 const AbilityMenu = (): HTMLElement => {
@@ -18,10 +18,13 @@ const AbilityMenu = (): HTMLElement => {
     element.style.textAlign = "center";
     element.style.userSelect = "none";
     element.style.boxShadow = "0px 0px 6px 1px #434343";
+    element.style.overflowX = "hidden";
+    element.style.overflowY = "auto";
+    element.style.resize = "auto";
     // * header
     let header = document.createElement('header');
     header.style.display = "flex";
-    header.style.justifyContent = "center";
+    header.style.justifyContent = "space-between";
     header.style.alignItems = "center";
     header.style.fontFamily = "monospace";
     header.style.backgroundColor = "#e6eaf6";
@@ -31,11 +34,29 @@ const AbilityMenu = (): HTMLElement => {
     header.innerHTML = "<h4>Abilities</h4>";
     header.draggable = true;
     element.appendChild(header);
+    // * holder
+    let holder = document.createElement("img");
+    holder.src = ICON_MOVE_BASE64;
+    holder.style.width = "19px";
+    holder.style.height = "19px";
+    holder.style.marginLeft = "3px";
+    holder.style.cursor = "move";
+    header.prepend(holder);
+    // * exit
+    let exit = document.createElement("img");
+    exit.src = ICON_EXIT_BASE64;
+    exit.style.width = "19px";
+    exit.style.height = "19px";
+    exit.style.marginRight = "3px";
+    exit.addEventListener('click', () => {
+        document.dispatchEvent(BootstrapService.events.exit);
+    });
+    header.appendChild(exit);
     // * set self draggable
     element = draggable(element, header) as HTMLDivElement;
     // * self init position
-    element.style.top = "1vw";
-    element.style.right = "1vh";
+    element.style.top = "1vh";
+    element.style.left = "1vw";
     // * main
     let main = document.createElement('main');
     main.style.margin = "6px";
