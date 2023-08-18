@@ -1,0 +1,30 @@
+{
+  "name": "pdf-capabilities.extension",
+  "version": "1.0.0",
+  "description": "this extension give you ability to import your extra sounds/videos to your pdf, to select when you need to play, imagine when you read American English, you need to play a practice sounds without any extra audio player.",
+  "main": "dist/main",
+  "scripts": {
+    "build": "tsc",
+    "start": "npm run build && node dist/main",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LegendisM/pdf-capabilities.extension.git"
+  },
+  "keywords": [
+    "extension",
+    "pdf",
+    "audio",
+    "tool"
+  ],
+  "author": "LegendisM",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LegendisM/pdf-capabilities.extension/issues"
+  },
+  "homepage": "https://github.com/LegendisM/pdf-capabilities.extension#readme",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}
